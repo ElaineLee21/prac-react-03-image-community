@@ -8,7 +8,7 @@ const Header = (props) => {
       <Grid is_flex padding="4px 16px">
         <Grid>
           <Text margin="0px" size="24px" bold>
-            사이트 이름을 넣어보자!!!!!
+            Images & Communication
           </Text>
         </Grid>
         <Grid is_flex>

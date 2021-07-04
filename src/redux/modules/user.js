@@ -4,6 +4,7 @@ import { produce } from "immer";
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 
 import { auth } from "../../shared/firebase";
+import firebase from "firebase/app";
 
 // action types
 const LOG_IN = "LOG_IN";
@@ -35,12 +36,28 @@ const user_initial = {
 };
 
 // middelware actions
-// 로그인하면 메인 화면으로 돌아가게 하는거
-const loginAction = (user) => {
+const loginFB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
-    console.log(history);
-    dispatch(setUser(user));
-    history.push("/");
+    auth
+      .signInWithEmailAndPassword(id, pwd)
+      .then((user) => {
+        // Signed in
+        console.log(user);
+
+        dispatch(
+          setUser({
+            user_name: user.user.displayName,
+            id: id,
+            user_profile: "",
+          })
+        );
+        history.push("/");
+        // ...
+      })
+      .catch((error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+      });
   };
 };
 
@@ -111,8 +128,8 @@ export default handleActions(
 const actionCreators = {
   logOut,
   getUser,
-  loginAction,
   signupFB,
+  loginFB,
 };
 
 export { actionCreators };

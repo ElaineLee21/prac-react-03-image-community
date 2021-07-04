@@ -14,6 +14,8 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// 자주 쓰는 애들 export
+const apiKey = firebaseConfig.apiKey;
 const auth = firebase.auth();
 
-export { auth };
+export { auth, apiKey };

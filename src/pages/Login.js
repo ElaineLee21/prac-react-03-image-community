@@ -3,6 +3,7 @@ import { Text, Input, Grid, Button } from "../elements/index";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { emailCheck } from "../shared/common";
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -15,6 +16,11 @@ const Login = (props) => {
       window.alert("아이디 또는 비밀번호를 입력하지 않았습니다.");
       return;
     }
+
+    if (!emailCheck(id)) {
+      window.alert("이메일 형식이 맞지 않습니다.");
+    }
+
     dispatch(userActions.loginFB(id, pwd));
   };
 

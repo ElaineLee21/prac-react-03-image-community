@@ -44,7 +44,13 @@ function App() {
           <Route path="/post/:id" exact component={PostDetail} />
         </ConnectedRouter>
         <Permit>
-          <Button is_float text="+"></Button>
+          <Button
+            is_float
+            text="+"
+            _onClick={() => {
+              history.push("/write");
+            }}
+          ></Button>
         </Permit>
       </Grid>
     </React.Fragment>

@@ -31,7 +31,7 @@ const Header = (props) => {
     return (
       <Permit>
         <React.Fragment>
-          <Grid is_flex padding="4px 16px">
+          <Grid is_flex padding="5px 5px">
             <Grid>
               <Text margin="0px" size="24px" bold>
                 Image & Communication
